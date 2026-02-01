@@ -1,0 +1,1549 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>AI 工程师数学基础学习路线图</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+            background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 100%);
+            color: #e4e4e7;
+            line-height: 1.6;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(15, 15, 26, 0.98);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 8px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .logo {
+            font-size: 1.1rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            flex-shrink: 0;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            flex: 1;
+            justify-content: flex-end;
+        }
+
+        .nav-item {
+            padding: 5px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.8rem;
+            white-space: nowrap;
+        }
+
+        .nav-item:hover {
+            background: rgba(102, 126, 234, 0.2);
+            border-color: rgba(102, 126, 234, 0.5);
+        }
+
+        .progress-section {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            flex-shrink: 0;
+        }
+
+        .progress-label {
+            color: #a1a1aa;
+            font-size: 0.75rem;
+            text-align: right;
+        }
+
+        .progress-bar {
+            width: 100px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            transition: width 0.3s ease;
+            width: 0%;
+        }
+
+        .main-content {
+            padding-top: 85px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 30px 15px;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            border-radius: 12px;
+            margin-bottom: 25px;
+        }
+
+        .hero h1 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.3;
+        }
+
+        .hero p {
+            font-size: 0.95rem;
+            color: #a1a1aa;
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0 5px;
+            line-height: 1.6;
+        }
+
+        .stage {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .stage-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .stage-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #f4f4f5;
+        }
+
+        .stage-duration {
+            background: rgba(102, 126, 234, 0.2);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            color: #667eea;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .skill-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(102, 126, 234, 0.5);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+        }
+
+        .skill-card.completed {
+            border-color: #22c55e;
+            background: rgba(34, 197, 94, 0.1);
+        }
+
+        .skill-card.learning {
+            border-color: #f59e0b;
+            background: rgba(245, 158, 11, 0.1);
+        }
+
+        .skill-name {
+            font-weight: bold;
+            margin-bottom: 6px;
+            color: #e4e4e7;
+            font-size: 0.9rem;
+        }
+
+        .skill-difficulty {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-size: 0.7rem;
+            margin-top: 6px;
+        }
+
+        .difficulty-beginner {
+            background: rgba(34, 197, 94, 0.2);
+            color: #22c55e;
+        }
+
+        .difficulty-intermediate {
+            background: rgba(245, 158, 11, 0.2);
+            color: #f59e0b;
+        }
+
+        .difficulty-advanced {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin: 20px 0 12px;
+            color: #f4f4f5;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 3px;
+            height: 16px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        .theory-box {
+            background: rgba(102, 126, 234, 0.1);
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+        }
+
+        .theory-title {
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        .theory-content {
+            color: #a1a1aa;
+            font-size: 0.85rem;
+            line-height: 1.7;
+        }
+
+        .theory-formula {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            margin: 8px 0;
+            overflow-x: auto;
+        }
+
+        .industry-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 12px;
+        }
+
+        .industry-title {
+            font-weight: bold;
+            color: #f4f4f5;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .industry-icon {
+            font-size: 1.2rem;
+        }
+
+        .industry-description {
+            color: #a1a1aa;
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+        }
+
+        .industry-tags {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .industry-tag {
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-size: 0.7rem;
+            background: rgba(102, 126, 234, 0.2);
+            color: #667eea;
+        }
+
+        .case-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 3px solid #667eea;
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .case-title {
+            font-weight: bold;
+            color: #e4e4e7;
+            margin-bottom: 4px;
+            font-size: 0.95rem;
+        }
+
+        .case-description {
+            color: #a1a1aa;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        .quiz-container {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 18px;
+        }
+
+        .quiz-question {
+            font-weight: bold;
+            margin-bottom: 12px;
+            color: #f4f4f5;
+            font-size: 0.95rem;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .quiz-option {
+            padding: 10px 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .quiz-option:hover {
+            background: rgba(102, 126, 234, 0.1);
+            border-color: rgba(102, 126, 234, 0.3);
+        }
+
+        .quiz-option.correct {
+            background: rgba(34, 197, 94, 0.2);
+            border-color: #22c55e;
+        }
+
+        .quiz-option.incorrect {
+            background: rgba(239, 68, 68, 0.2);
+            border-color: #ef4444;
+        }
+
+        .quiz-feedback {
+            margin-top: 12px;
+            padding: 10px;
+            border-radius: 8px;
+            display: none;
+            font-size: 0.85rem;
+        }
+
+        .quiz-feedback.show {
+            display: block;
+        }
+
+        .quiz-feedback.correct {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .quiz-feedback.incorrect {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .advanced-quiz {
+            background: rgba(245, 158, 11, 0.1);
+            border: 2px solid rgba(245, 158, 11, 0.3);
+        }
+
+        .advanced-badge {
+            display: inline-block;
+            background: rgba(245, 158, 11, 0.2);
+            color: #f59e0b;
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+
+        .resource-list {
+            list-style: none;
+        }
+
+        .resource-item {
+            padding: 10px 12px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .resource-type {
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .resource-video {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+        }
+
+        .resource-course {
+            background: rgba(59, 130, 246, 0.2);
+            color: #3b82f6;
+        }
+
+        .resource-doc {
+            background: rgba(34, 197, 94, 0.2);
+            color: #22c55e;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #1a1a2e;
+            border-radius: 12px;
+            padding: 20px;
+            max-width: 90%;
+            width: 400px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: none;
+            border: none;
+            color: #a1a1aa;
+            font-size: 1.3rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-close:hover {
+            color: #f4f4f5;
+        }
+
+        .modal-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #f4f4f5;
+            padding-right: 30px;
+        }
+
+        .modal-body {
+            color: #a1a1aa;
+            line-height: 1.7;
+            font-size: 0.9rem;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 12px;
+            }
+
+            .header {
+                padding: 6px 0;
+            }
+
+            .nav-container {
+                padding: 0 12px;
+                gap: 6px;
+            }
+
+            .logo {
+                font-size: 1rem;
+            }
+
+            .nav-menu {
+                gap: 4px;
+                justify-content: center;
+            }
+
+            .nav-item {
+                padding: 4px 8px;
+                font-size: 0.75rem;
+            }
+
+            .progress-bar {
+                width: 80px;
+            }
+
+            .progress-label {
+                font-size: 0.7rem;
+            }
+
+            .main-content {
+                padding-top: 75px;
+            }
+
+            .hero {
+                padding: 25px 15px;
+                border-radius: 10px;
+            }
+
+            .hero h1 {
+                font-size: 1.3rem;
+            }
+
+            .hero p {
+                font-size: 0.9rem;
+            }
+
+            .stage {
+                padding: 15px;
+                margin-bottom: 15px;
+                border-radius: 10px;
+            }
+
+            .stage-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .stage-title {
+                font-size: 1.1rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+                gap: 8px;
+            }
+
+            .skill-card {
+                padding: 10px;
+            }
+
+            .skill-name {
+                font-size: 0.85rem;
+            }
+
+            .theory-box {
+                padding: 12px;
+            }
+
+            .theory-content {
+                font-size: 0.8rem;
+            }
+
+            .industry-card {
+                padding: 12px;
+            }
+
+            .industry-description {
+                font-size: 0.8rem;
+            }
+
+            .case-title {
+                font-size: 0.9rem;
+            }
+
+            .case-description {
+                font-size: 0.8rem;
+            }
+
+            .quiz-container {
+                padding: 12px;
+            }
+
+            .quiz-option {
+                padding: 8px 10px;
+                font-size: 0.85rem;
+            }
+
+            .resource-item {
+                padding: 8px 10px;
+                font-size: 0.85rem;
+            }
+
+            .modal-content {
+                padding: 15px;
+                max-height: 75vh;
+            }
+
+            .modal-title {
+                font-size: 1.1rem;
+                padding-right: 35px;
+            }
+
+            .modal-body {
+                font-size: 0.85rem;
+            }
+
+            .modal-close {
+                width: 28px;
+                height: 28px;
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-menu {
+                order: 3;
+                width: 100%;
+                justify-content: center;
+            }
+
+            .progress-section {
+                order: 2;
+            }
+
+            .logo {
+                order: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">🎯 AI 数学路线图</div>
+            <nav class="nav-menu">
+                <div class="nav-item" onclick="scrollToStage('stage1')">线性代数</div>
+                <div class="nav-item" onclick="scrollToStage('stage2')">微积分</div>
+                <div class="nav-item" onclick="scrollToStage('stage3')">概率统计</div>
+                <div class="nav-item" onclick="scrollToStage('stage4')">信息论</div>
+                <div class="nav-item" onclick="scrollToStage('stage5')">生成模型</div>
+            </nav>
+            <div class="progress-section">
+                <div class="progress-label">学习进度</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container main-content">
+        <div class="hero">
+            <h1>AI 工程师数学基础学习路线图</h1>
+            <p>从线性代数到生成模型，系统化掌握 AI 核心数学知识，包含核心理论、行业应用与前沿拓展</p>
+        </div>
+
+        <div class="stage" id="stage1">
+            <div class="stage-header">
+                <h2 class="stage-title">阶段一：线性代数基础</h2>
+                <span class="stage-duration">⏱️ 3-4周</span>
+            </div>
+            
+            <h3 class="section-title">核心技能</h3>
+            <div class="skills-grid" id="skills1"></div>
+
+            <h3 class="section-title">📐 核心数学理论</h3>
+            <div class="theory-box">
+                <div class="theory-title">向量空间与线性变换</div>
+                <div class="theory-content">
+                    向量空间是线性代数的基础，包含加法和数乘运算。线性变换保持向量的加法和数乘性质，可用矩阵表示。
+                </div>
+                <div class="theory-formula">T(v + w) = T(v) + T(w), T(αv) = αT(v)</div>
+            </div>
+            <div class="theory-box">
+                <div class="theory-title">特征值分解</div>
+                <div class="theory-content">
+                    对于方阵 A，若存在非零向量 v 和标量 λ 使得 Av = λv，则 λ 是特征值，v 是特征向量。
+                </div>
+                <div class="theory-formula">Av = λv, det(A - λI) = 0</div>
+            </div>
+            <div class="theory-box">
+                <div class="theory-title">奇异值分解 (SVD)</div>
+                <div class="theory-content">
+                    任意矩阵 A 可分解为 A = UΣVᵀ，其中 U 和 V 是正交矩阵，Σ 是对角矩阵，包含奇异值。
+                </div>
+                <div class="theory-formula">A = UΣVᵀ, Σ = diag(σ₁, σ₂, ..., σᵣ)</div>
+            </div>
+
+            <h3 class="section-title">💼 行业应用介绍</h3>
+            <div class="industry-card">
+                <div class="industry-title">
+                    <span class="industry-icon">🔍</span>
+                    推荐系统行业
+                </div>
+                <div class="industry-description">
+                    矩阵分解技术是协同过滤推荐的核心，用于预测用户对未交互物品的偏好，广泛应用于电商、视频平台。
+                </div>
+                <div class="industry-tags">
+                    <span class="industry-tag">Netflix</span>
+                    <span class="industry-tag">Amazon</span>
+                    <span class="industry-tag">抖音</span>
+                </div>
+            </div>
+            <div class="industry-card">
+                <div class="industry-title">
+                    <span class="industry-icon">🖼️</span>
+                    计算机视觉行业
+                </div>
+                <div class="industry-description">
+                    卷积神经网络中的卷积操作本质上是矩阵乘法，图像可表示为张量，通过线性变换提取特征。
+                </div>
+                <div class="industry-tags">
+                    <span class="industry-tag">Tesla</span>
+                    <span class="industry-tag">旷视</span>
+                    <span class="industry-tag">商汤</span>
+                </div>
+            </div>
+            <div class="industry-card">
+                <div class="industry-title">
+                    <span class="industry-icon">🤖</span>
+                    自然语言处理行业
+                </div>
+                <div class="industry-description">
+                    词向量将词语映射到高维向量空间，通过点积计算语义相似度，是现代 NLP 的基础。
+                </div>
+                <div class="industry-tags">
+                    <span class="industry-tag">OpenAI</span>
+                    <span class="industry-tag">百度</span>
+                    <span class="industry-tag">阿里</span>
+                </div>
+            </div>
+
+            <h3 class="section-title">🎯 机器学习应用案例</h3>
+            <div class="case-card">
+                <div class="case-title">🎯 Word Embeddings 语义表示（入门）</div>
+                <div class="case-description">通过向量空间模型将词语转换为数值向量，理解词向量之间的距离和相似度计算</div>
+            </div>
+            <div class="case-card">
+                <div class="case-title">📊 主成分分析 PCA 降维（进阶）</div>
+                <div class="case-description">利用特征值分解进行数据降维，在图像压缩和可视化中的应用</div>
+            </div>
+            <div class="case-card">
+                <div class="case-title">🔍 协同过滤推荐系统（高阶）</div>
+                <div class="case-description">基于矩阵分解的推荐算法，理解用户-物品矩阵的稀疏性和填充策略</div>
+            </div>
+
+            <h3 class="section-title">学习资源</h3>
+            <ul class="resource-list">
+                <li class="resource-item">
+                    <span class="resource-type resource-course">课程</span>
+                    <span>3Blue1Brown 线性代数本质</span>
+                </li>
+                <li class="resource-item">
+                    <span class="resource-type resource-course">课程</span>
+                    <span>MIT 18.06 线性代数</span>
+                </li>
+                <li class="resource-item">
+                    <span class="resource-type resource-doc">文档</span>
+                    <span>NumPy 线性代数操作指南</span>
+                </li>
+            </ul>
+
+            <div class="quiz-container">
+                <div class="quiz-question">小测验：矩阵乘法的维度规则是什么？</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, false, '答案错误。矩阵乘法要求第一个矩阵的列数等于第二个矩阵的行数。')">A. 两个矩阵维度必须完全相同</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true, '正确！如果A是m×n，B是n×p，结果是m×p。')">B. 第一个矩阵的列数 = 第二个矩阵的行数</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false, '答案错误。这是向量点积的条件。')">C. 第一个矩阵的行数 = 第二个矩阵的列数</div>
+                </div>
+                <div class="quiz-feedback" id="feedback1"></div>
+            </div>
+
+            <div class="quiz-container advanced-quiz">
+                <div class="quiz-question">🚀 前沿拓展：SVD 在大规模推荐系统中的优化挑战是什么？<span class="advanced-badge">高阶</span></div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAdvancedAnswer(this, 'adv1', false, '虽然内存是限制因素，但核心挑战在于计算效率。')">A. 内存不足，无法存储完整矩阵</div>
+                    <div class="quiz-option" onclick="checkAdvancedAnswer(this, 'adv1', true, '正确！随机梯度下降和交替最小化是常用优化策略。')">B. 计算复杂度高，需要增量或近似算法</div>
+                    <div class="quiz-option" onclick="checkAdvancedAnswer(this, 'adv1', false, '精度通常可以通过正则化来解决。')">C. 矩阵分解精度不够</div>
+                </div>
+                <div class="quiz-feedback" id="adv-feedback1"></div>
+            </div>
+        </div>
+
+        <div class="stage" id="stage2">
+            <div class="stage-header">
+                <h2 class="stage-title">阶段二：微积分与优化理论</h2>
+                <span class="stage-duration">⏱️ 3-4周</span>
+            </div>
+
+            <h3 class="section-title">核心技能</h3>
+            <div class="skills-grid" id="skills2"></div>
+
+            <h3 class="section-title">📐 核心数学理论</h3>
+            <div class="theory-box">
+                <div class="theory-title">梯度下降算法</div>
+                <div class="theory-content">
+                    通过沿负梯度方向迭代更新参数，逐步逼近函数的最小值。学习率控制每步的步长。
+                </div>
+                <div class="theory-formula">θ_{t+1} = θ_t - α∇L(θ_t)</div>
+            </div>
+            <div class="theory-box">
+                <div class="theory-title">链式法则（反向传播）</div>
+                <div class="theory-content">
+                    用于计算复合函数的导数，是神经网络反向传播算法的数学基础。
+                </div>
+                <div class="theory-formula">∂f/∂x = (∂f/∂g)(∂g/∂x)</div>
+            </div>
+            <div class="theory-box">
+                <div class="theory-title">凸优化理论</div>
+                <div class="theory-content">
+                    凸函数的局部最小值就是全局最小值，凸优化问题具有强收敛性保证。
+                </div>
+                <div class="theory-formula">f(θx + (1-θ)y) ≤ θf(x) + (1-θ)f(y)</div>
+            </div>
+
+            <h3 class="section-title">💼 行业应用介绍</h3>
+            <div class="industry-card">
+                <div class="industry-title">
+                    <span class="industry-icon">🏭</span>
+                    深度学习框架行业
+                </div>
+                <div class="industry-description">
+                    PyTorch、TensorFlow 等框架的核心是自动微分系统，基于链式法则高效计算梯度。
+                </div>
+                <div class="industry-tags">
+                    <span class="industry-tag">Meta</span>
+                    <span class="industry-tag">Google</span>
+                    <span class="industry-tag">JAX</span>
+                </div>
+            </div>
+            <div class="industry-card">
+                <div class="industry-title">
+                    <span class="industry-icon">🚗</span>
+                    自动驾驶行业
+                </div>
+                <div class="industry-description">
+                    深度神经网络用于感知、决策和控制，优化算法确保实时性和安全性。
+                </div>
+                <div class="industry-tags">
+                    <span class="industry-tag">Waymo</span>
+                    <span class="industry-tag">小马智行</span>
+                    <span class="industry-tag">蔚来</span>
+                </div>
+            </div>
+            <div class="industry-card">
+                <div class="industry-title">
+                    <span class="industry-icon">⚕️</span>
+                    医疗AI行业
+                </div>
+                <div class="industry-description">
+                    医学影像诊断使用深度学习，通过梯度下降优化网络参数，提高诊断准确率。
+                </div>
+                <div class="industry-tags">
+                    <span class="industry-tag">推想科技</span>
+                    <span class="industry-tag">数坤科技</span>
+                    <span class="industry-tag">依图</span>
+                </div>
+            </div>
+
+            <h3 class="section-title">🎯 机器学习应用案例</h3>
+            <div class="case-card">
+                <div class="case-title">🤖 神经网络训练中的反向传播（入门）</div>
+                <div class="case-description">理解梯度下降算法如何通过链式法则更新神经网络参数</div>
+            </div>
+            <div class="case-card">
+                <div class="case-title">⚡ Adam 自适应优化器（进阶）</div>
+                <div class="case-description">学习动量和自适应学习率如何在深度学习训练中加速收敛</div>
+            </div>
+            <div class="case-card">
+                <div class="case-title">🔥 梯度消失/爆炸问题（高阶）</div>
+                <div class="case-description">深层网络中的梯度流动问题及解决方案，如残差连接和归一化层</div>
+            </div>
+
+            <h3 class="section-title">学习资源</h3>
+            <ul class="resource-list">
+                <li class="resource-item">
+                    <span class="resource-type resource-course">课程</span>
+                    <span>3Blue1Brown 微积分本质</span>
+                </li>
+                <li class="resource-item">
+                    <span class="resource-type resource-video">视频</span>
+                    <span>PyTorch 优化器详解</span>
+                </li>
+                <li class="resource-item">
+                    <span class="resource-type resource-doc">文档</span>
+                    <span>深度学习优化算法综述</span>
+                </li>
+            </ul>
+
+            <div class="quiz-container">
+                <div class="quiz-question">小测验：Adam 优化器的主要优势是什么？</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, false, '答案错误。Adam 的优势在于自适应学习率和动量。')">A. 完全不需要调整学习率</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true, '正确！Adam 结合了动量和自适应学习率，训练效率高。')">B. 自适应学习率和动量机制</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false, '答案错误。SGD 是随机梯度下降，更基础的优化器。')">C. 比 SGD 更简单</div>
+                </div>
+                <div class="quiz-feedback" id="feedback2"></div>
+            </div>
+
+            <div class="quiz-container advanced-quiz">
+                <div class="quiz-question">🚀 前沿拓展：二阶优化方法在深度学习中应用受限的主要原因是什么？<span class="advanced-badge">高阶</span></div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAdvancedAnswer(this, 'adv2', false, '虽然精度是优势，但不是主要限制。')">A. 收敛精度不如一阶方法</div>
+                    <div class="quiz-option" onclick="checkAdvancedAnswer(this, 'adv2', true, '正确！计算Hessian矩阵及其逆的计算和存储成本太高。')">B. 计算复杂度和存储需求过高</div>
+                    <div class="quiz-option" onclick="checkAdvancedAnswer(this, 'adv2', false, '学习率调整可以通过其他方法解决。')">C. 学习率调整困难</div>
+                </div>
+                <div class="quiz-feedback" id="adv-feedback2"></div>
+            </div>
+        </div>
+
+        <div class="stage" id="stage3">
+            <div class="stage-header">
+                <h2 class="stage-title">阶段三：概率论与统计</h2>
+                <span class="stage-duration">⏱️ 3-4周</span>
+            </div>
+
+            <h3 class="section-title">核心技能</h3>
+            <div class="skills-grid" id="skills3"></div>
+
+            <h3 class="section-title">📐 核心数学理论</h3>
+            <div class="theory-box">
+                <div class="theory-title">贝叶斯定理</div>
+                <div class="theory-content">
+                    描述在获得新证据后如何更新先验概率，是贝叶斯统计和机器学习的基础。
+                </div>
+                <div class="theory-formula">P(A|B) = P(B|A)P(A) / P(B)</div>
+            </div>
+            <div class="theory-box">
+                <div class="theory-title">最大似然估计 (MLE)</div>
+                <div class="theory-content">
+                    通过最大化观测数据的似然函数来估计模型参数，是参数估计的经典方法。
+                </div>
+                <div class="theory-formula">θ̂ = argmax θ ∏ P(x_i | θ)</div>
+            </div>
+            <div class="theory-box">
+                <div class="theory-title">高斯分布</div>
+                <div class="theory-content">
+                    正态分布是最重要的连续概率分布，由均值μ和方差σ²完全确定。
+                </div>
+                <div class="theory-formula">P(x) = (1/√(2πσ²)) exp(-(x-μ)²/(2σ²))</div>
+            </div>
+
+            <h3 class="section-title">💼 行业应用介绍</h3>
+            <div class="industry-card">
+                <div class="industry-title">
+                    <span class="industry-icon">📊</span>
+                    金融科技行业
+                </div>
+                <div class="industry-description">
+                    风险评估、信用评分使用概率模型，贝叶斯方法用于动态更新风险预测。
+                </div>
+                <div class="industry-tags">
+                    <span class="industry-tag">蚂蚁集团</span>
+                    <span class="industry-tag">京东数科</span>
+                    <span class="industry-tag">陆金所</span>
+                </div>
+            </div>
+            <div class="industry-card">
+                <div class="industry-title">
+                    <span class="industry-icon">🛡️</span>
+                    网络安全行业
+                </div>
+                <div class="industry-description">
+                    异常检测使用概率模型识别异常行为，垃圾邮件过滤应用朴素贝叶斯算法。
+                </div>
+                <div class="industry-tags">
+                    <span class="industry-tag">360</span>
+                    <span class="industry-tag">奇安信</span>
+                    <span class="industry-tag">深信服</span>
+                </div>
+            </div>
+            <div class="industry-card">
+                <div class="industry-title">
+                    <span class="industry-icon">🧪</span>
+                    生物医药行业
+                </div>
+                <div class="industry-description">
+                    药物研发、基因分析使用统计方法，概率模型用于预测蛋白质结构。
+                </div>
+                <div class="industry-tags">
+                    <span class="industry-tag">AlphaFold</span>
+                    <span class="industry-tag">华大基因</span>
+                    <span class="industry-tag">药明康德</span>
+                </div>
+            </div>
+
+            <h3 class="section-title">🎯 机器学习应用案例</h3>
+            <div class="case-card">
+                <div class="case-title">🎲 高斯混合模型 GMM 聚类（入门）</div>
+                <div class="case-description">使用概率模型进行数据聚类，理解 EM 算法的迭代优化过程</div>
+            </div>
+            <div class="case-card">
+                <div class="case-title">📧 朴素贝叶斯垃圾邮件分类（进阶）</div>
+                <div class="case-description">基于贝叶斯定理的文本分类，理解特征独立性假设和条件概率计算</div>
+            </div>
+            <div class="case-card">
+                <div class="case-title">🖼️ 扩散模型采样过程（高阶）</div>
+                <div class="case-description">理解从高斯噪声中逐步生成图像的马尔可夫链采样过程</div>
+            </div>
+
+            <h3 class="section-title">学习资源</h3>
+            <ul class="resource-list">
+                <li class="resource-item">
+                    <span class="resource-type resource-course">课程</span>
+                    <span>StatQuest 统计学习</span>
+                </li>
+                <li class="resource-item">
+                    <span class="resource-type resource-video">视频</span>
+                    <span>概率论基础精讲</span>
+                </li>
+                <li class="resource-item">
+                    <span class="resource-type resource-doc">文档</span>
+                    <span>Scipy 统计模块使用指南</span>
+                </li>
+            </ul>
+
+            <div class="quiz-container">
+                <div class="quiz-question">小测验：贝叶斯定理的核心思想是什么？</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, false, '答案错误。贝叶斯定理的核心是基于新证据更新概率。')">A. 概率永远不变</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true, '正确！贝叶斯定理允许我们根据新证据更新先验概率。')">B. 根据新证据更新先验概率</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false, '答案错误。这是频率学派的观点。')">C. 只能通过大量实验确定概率</div>
+                </div>
+                <div class="quiz-feedback" id="feedback3"></div>
+            </div>
+
+            <div class="quiz-container advanced-quiz">
+                <div class="quiz-question">🚀 前沿拓展：变分推断与MCMC相比的主要优势是什么？<span class="advanced-badge">高阶</span></div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAdvancedAnswer(this, 'adv3', false, 'MCMC的理论保证更强，但计算成本高。')">A. 理论保证更严格</div>
+                    <div class="quiz-option" onclick="checkAdvancedAnswer(this, 'adv3', true, '正确！变分推断将推断转化为优化问题，适合大规模数据。')">B. 计算效率更高，适合大规模数据</div>
+                    <div class="quiz-option" onclick="checkAdvancedAnswer(this, 'adv3', false, '精度可以通过增加样本数改善。')">C. 近似精度更高</div>
+                </div>
+                <div class="quiz-feedback" id="adv-feedback3"></div>
+            </div>
+        </div>
+
+        <div class="stage" id="stage4">
+            <div class="stage-header">
+                <h2 class="stage-title">阶段四：信息论与深度学习数学</h2>
+                <span class="stage-duration">⏱️ 4-5周</span>
+            </div>
+
+            <h3 class="section-title">核心技能</h3>
+            <div class="skills-grid" id="skills4"></div>
+
+            <h3 class="section-title">📐 核心数学理论</h3>
+            <div class="theory-box">
+                <div class="theory-title">信息熵</div>
+                <div class="theory-content">
+                    衡量随机变量不确定性的指标，也是信息量的期望值，是信息论的核心概念。
+                </div>
+                <div class="theory-formula">H(X) = -∑ P(x) log P(x)</div>
+            </div>
+            <div class="theory-box">
+                <div class="theory-title">交叉熵损失</div>
+                <div class="theory-content">
+                    衡量两个概率分布的差异，是分类任务的标准损失函数，等价于负对数似然。
+                </div>
+                <div class="theory-formula">L = -∑ y_i log(ŷ_i)</div>
+            </div>
+            <div class="theory-box">
+                <div class="theory-title">KL散度</div>
+                <div class="theory-content">
+                    衡量两个概率分布之间差异的非对称度量，在VAE等模型中作为正则化项。
+                </div>
+                <div class="theory-formula">D_KL(P||Q) = ∑ P(x) log(P(x)/Q(x))</div>
+            </div>
+
+            <h3 class="section-title">💼 行业应用介绍</h3>
+            <div class="industry-card">
+                <div class="industry-title">
+                    <span class="industry-icon">💬</span>
+                    大语言模型行业
+                </div>
+                <div class="industry-description">
+                    Transformer使用自注意力机制和交叉熵损失训练，理解概率分布和语言建模。
+                </div>
+                <div class="industry-tags">
+                    <span class="industry-tag">OpenAI</span>
+                    <span class="industry-tag">Anthropic</span>
+                    <span class="industry-tag">智谱AI</span>
+                </div>
+            </div>
+            <div class="industry-card">
+                <div class="industry-title">
+                    <span class="industry-icon">📷</span>
+                    图像识别行业
+                </div>
+                <div class="industry-description">
+                    分类模型使用交叉熵损失，注意力机制提升特征提取能力，应用于安防、医疗。
+                </div>
+                <div class="industry-tags">
+                    <span class="industry-tag">海康威视</span>
+                    <span class="industry-tag">依图</span>
+                    <span class="industry-tag">云从</span>
+                </div>
+            </div>
+            <div class="industry-card">
+                <div class="industry-title">
+                    <span class="industry-icon">🎵</span>
+                    语音识别行业
+                </div>
+                <div class="industry-description">
+                    使用CTC损失函数（信息论变体），端到端语音识别，应用于智能音箱、客服。
+                </div>
+                <div class="industry-tags">
+                    <span class="industry-tag">科大讯飞</span>
+                    <span class="industry-tag">思必驰</span>
+                    <span class="industry-tag">出门问问</span>
+                </div>
+            </div>
+
+            <h3 class="section-title">🎯 机器学习应用案例</h3>
+            <div class="case-card">
+                <div class="case-title">🏆 ImageNet 图像分类（入门）</div>
+                <div class="case-description">使用交叉熵损失函数训练大规模图像分类模型</div>
+            </div>
+            <div class="case-card">
+                <div class="case-title">🧠 Transformer 自注意力机制（进阶）</div>
+                <div class="case-description">理解缩放点积注意力的数学原理和位置编码的作用</div>
+            </div>
+            <div class="case-card">
+                <div class="case-title">🎨 变分自编码器 VAE（高阶）</div>
+                <div class="case-description">使用 KL 散度约束潜在空间的分布，学习数据的高效表示</div>
+            </div>
+
+            <h3 class="section-title">学习资源</h3>
+            <ul class="resource-list">
+                <li class="resource-item">
+                    <span class="resource-type resource-course">课程</span>
+                    <span>斯坦福 CS231n 深度学习</span>
+                </li>
+                <li class="resource-item">
+                    <span class="resource-type resource-video">视频</span>
+                    <span>注意力机制详解</span>
+                </li>
+                <li class="resource-item">
+                    <span class="resource-type resource-doc">文档</span>
+                    <span>信息论基础与机器学习</span>
+                </li>
+            </ul>
+
+            <div class="quiz-container">
+                <div class="quiz-question">小测验：交叉熵损失函数最适合什么任务？</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, false, '答案错误。回归任务通常使用均方误差。')">A. 回归任务</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false, '答案错误。交叉熵主要用于分类。')">B. 无监督学习</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true, '正确！交叉熵是分类任务的标准损失函数。')">C. 多分类任务</div>
+                </div>
+                <div class="quiz-feedback" id="feedback4"></div>
+            </div>
+
+            <div class="quiz-container advanced-quiz">
+                <div class="quiz-question">🚀 前沿拓展：自注意力机制的时间复杂度瓶颈是什么？<span class="advanced-badge">高阶</span></div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAdvancedAnswer(this, 'adv4', true, '正确！计算注意力矩阵需要O(n²)空间，限制了序列长度。')">A. 注意力矩阵计算和存储的O(n²)复杂度</div>
+                    <div class="quiz-option" onclick="checkAdvancedAnswer(this, 'adv4', false, '参数量可以通过权重共享优化。')">B. 参数量过大</div>
+                    <div class="quiz-option" onclick="checkAdvancedAnswer(this, 'adv4', false, '训练稳定性可以通过归一化解决。')">C. 训练不稳定</div>
+                </div>
+                <div class="quiz-feedback" id="adv-feedback4"></div>
+            </div>
+        </div>
+
+        <div class="stage" id="stage5">
+            <div class="stage-header">
+                <h2 class="stage-title">阶段五：生成模型数学基础</h2>
+                <span class="stage-duration">⏱️ 4-5周</span>
+            </div>
+
+            <h3 class="section-title">核心技能</h3>
+            <div class="skills-grid" id="skills5"></div>
+
+            <h3 class="section-title">📐 核心数学理论</h3>
+            <div class="theory-box">
+                <div class="theory-title">变分自编码器 (VAE)</div>
+                <div class="theory-content">
+                    通过变分推断学习数据的潜在表示，使用重参数化技巧实现端到端训练。
+                </div>
+                <div class="theory-formula">L = E[log p(x|z)] - D_KL(q(z|x)||p(z))</div>
+            </div>
+            <div class="theory-box">
+                <div class="theory-title">扩散模型 SDE</div>
+                <div class="theory-content">
+                    通过随机微分方程描述数据逐步扩散到噪声的过程，逆向生成通过训练神经网络。
+                </div>
+                <div class="theory-formula">dx = f(x,t)dt + g(t)dW</div>
+            </div>
+            <div class="theory-box">
+                <div class="theory-title">生成对抗网络 GAN</div>
+                <div class="theory-content">
+                    生成器和判别器通过博弈论对抗训练，生成器学习逼近真实数据分布。
+                </div>
+                <div class="theory-formula">min_G max_D V(D,G) = E[log D(x)] + E[log(1-D(G(z)))]</div>
+            </div>
+
+            <h3 class="section-title">💼 行业应用介绍</h3>
+            <div class="industry-card">
+                <div class="industry-title">
+                    <span class="industry-icon">🎨</span>
+                    AIGC内容创作行业
+                </div>
+                <div class="industry-description">
+                    Stable Diffusion、Midjourney等扩散模型用于图像生成，应用于设计、广告。
+                </div>
+                <div class="industry-tags">
+                    <span class="industry-tag">Stability AI</span>
+                    <span class="industry-tag">Midjourney</span>
+                    <span class="industry-tag">Adobe</span>
+                </div>
+            </div>
+            <div class="industry-card">
+                <div class="industry-title">
+                    <span class="industry-icon">🎬</span>
+                    视频生成行业
+                </div>
+                <div class="industry-description">
+                    Sora、Runway等视频生成模型，理解时空扩散模型，应用于影视制作。
+                </div>
+                <div class="industry-tags">
+                    <span class="industry-tag">OpenAI</span>
+                    <span class="industry-tag">Runway</span>
+                    <span class="industry-tag">Pika</span>
+                </div>
+            </div>
+            <div class="industry-card">
+                <div class="industry-title">
+                    <span class="industry-icon">👗</span>
+                    虚拟人/数字人行业
+                </div>
+                <div class="industry-description">
+                    StyleGAN生成逼真人脸，NeRF实现3D重建，应用于虚拟主播、电商直播。
+                </div>
+                <div class="industry-tags">
+                    <span class="industry-tag">NVIDIA</span>
+                    <span class="industry-tag">商汤</span>
+                    <span class="industry-tag">百度</span>
+                </div>
+            </div>
+
+            <h3 class="section-title">🎯 机器学习应用案例</h3>
+            <div class="case-card">
+                <div class="case-title">🎨 Stable Diffusion 图像生成（入门）</div>
+                <div class="case-description">理解扩散模型的训练和采样过程，实现文本到图像生成</div>
+            </div>
+            <div class="case-card">
+                <div class="case-title">🎬 Sora 视频生成原理（进阶）</div>
+                <div class="case-description">学习时空扩散模型和视频表示的数学基础</div>
+            </div>
+            <div class="case-card">
+                <div class="case-title">👤 StyleGAN 人脸生成（高阶）</div>
+                <div class="case-description">理解生成对抗网络的博弈论原理和样式空间的解纠缠</div>
+            </div>
+
+            <h3 class="section-title">学习资源</h3>
+            <ul class="resource-list">
+                <li class="resource-item">
+                    <span class="resource-type resource-course">课程</span>
+                    <span>Fast.ai 深度学习课程</span>
+                </li>
+                <li class="resource-item">
+                    <span class="resource-type resource-video">视频</span>
+                    <span>扩散模型完整讲解</span>
+                </li>
+                <li class="resource-item">
+                    <span class="resource-type resource-doc">文档</span>
+                    <span>生成模型论文合集</span>
+                </li>
+            </ul>
+
+            <div class="quiz-container">
+                <div class="quiz-question">小测验：扩散模型的核心思想是什么？</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, true, '正确！扩散模型通过学习从纯噪声恢复数据来生成新样本。')">A. 从噪声逐步恢复数据</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false, '答案错误。这是生成对抗网络的思想。')">B. 生成器和判别器对抗</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false, '答案错误。这是自编码器的思想。')">C. 压缩和解压缩数据</div>
+                </div>
+                <div class="quiz-feedback" id="feedback5"></div>
+            </div>
+
+            <div class="quiz-container advanced-quiz">
+                <div class="quiz-question">🚀 前沿拓展：Flow Matching相比扩散模型的主要优势是什么？<span class="advanced-badge">高阶</span></div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAdvancedAnswer(this, 'adv5', false, '采样质量通常相当，主要区别在效率。')">A. 生成质量更高</div>
+                    <div class="quiz-option" onclick="checkAdvancedAnswer(this, 'adv5', true, '正确！允许更少的采样步数，推理速度更快。')">B. 采样步数更少，推理更快</div>
+                    <div class="quiz-option" onclick="checkAdvancedAnswer(this, 'adv5', false, '训练稳定性可以通过其他方法改善。')">C. 训练更稳定</div>
+                </div>
+                <div class="quiz-feedback" id="adv-feedback5"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="skillModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <h3 class="modal-title" id="modalTitle"></h3>
+            <div class="modal-body" id="modalBody"></div>
+        </div>
+    </div>
+
+    <script>
+        const skillsData = {
+            skills1: [
+                { name: '向量与矩阵运算', difficulty: 'beginner', desc: '掌握向量加减、点积、矩阵乘法等基础运算' },
+                { name: '矩阵乘法与转置', difficulty: 'beginner', desc: '理解矩阵乘法的几何意义和计算规则' },
+                { name: '特征值与特征向量', difficulty: 'intermediate', desc: '学习特征分解在降维和稳定性分析中的应用' },
+                { name: '矩阵分解 SVD', difficulty: 'intermediate', desc: '掌握奇异值分解在数据压缩和推荐系统中的使用' },
+                { name: '张量基础', difficulty: 'advanced', desc: '理解多维数组在深度学习中的表示和操作' }
+            ],
+            skills2: [
+                { name: '梯度下降基础', difficulty: 'beginner', desc: '理解一阶导数在参数优化中的作用' },
+                { name: '链式法则', difficulty: 'beginner', desc: '掌握反向传播中的梯度计算' },
+                { name: '自适应优化算法', difficulty: 'intermediate', desc: '学习 Adam、RMSprop 等优化器的原理' },
+                { name: '梯度消失问题', difficulty: 'advanced', desc: '理解深层网络中的梯度流动问题' },
+                { name: '凸优化理论', difficulty: 'advanced', desc: '学习优化问题的收敛性分析' }
+            ],
+            skills3: [
+                { name: '概率分布基础', difficulty: 'beginner', desc: '掌握常见分布如高斯分布、伯努利分布' },
+                { name: '最大似然估计', difficulty: 'beginner', desc: '理解 MLE 在参数估计中的应用' },
+                { name: '贝叶斯推断', difficulty: 'intermediate', desc: '学习先验、似然和后验概率的关系' },
+                { name: '马尔可夫链', difficulty: 'intermediate', desc: '理解状态转移矩阵和稳态分布' },
+                { name: '采样方法', difficulty: 'advanced', desc: '掌握 MCMC、Gibbs 采样等高级采样技术' }
+            ],
+            skills4: [
+                { name: '信息熵与互信息', difficulty: 'beginner', desc: '理解信息量的度量和不确定性' },
+                { name: '交叉熵损失', difficulty: 'beginner', desc: '掌握分类任务中的标准损失函数' },
+                { name: 'KL 散度', difficulty: 'intermediate', desc: '学习两个概率分布之间的距离度量' },
+                { name: '自注意力机制', difficulty: 'intermediate', desc: '理解 Transformer 的核心数学原理' },
+                { name: '变分推断', difficulty: 'advanced', desc: '学习近似推断中的 ELBO 优化' }
+            ],
+            skills5: [
+                { name: 'VAE 原理', difficulty: 'beginner', desc: '理解变分自编码器的生成过程' },
+                { name: '扩散模型基础', difficulty: 'intermediate', desc: '学习前向扩散和逆向去噪过程' },
+                { name: 'SDE 与 ODE', difficulty: 'advanced', desc: '理解随机微分方程在扩散模型中的作用' },
+                { name: 'Flow Matching', difficulty: 'advanced', desc: '学习连续归一化流的数学框架' },
+                { name: 'GAN 训练理论', difficulty: 'advanced', desc: '理解生成对抗网络的博弈论平衡' }
+            ]
+        };
+
+        let skillStatus = {};
+
+        function loadSkills() {
+            const saved = localStorage.getItem('aiMathRoadmapProgress');
+            if (saved) {
+                skillStatus = JSON.parse(saved);
+            }
+            
+            for (let stage = 1; stage <= 5; stage++) {
+                const container = document.getElementById(`skills${stage}`);
+                if (container && skillsData[`skills${stage}`]) {
+                    skillsData[`skills${stage}`].forEach((skill, index) => {
+                        const skillId = `skill${stage}_${index}`;
+                        const status = skillStatus[skillId] || 'not-started';
+                        
+                        const card = document.createElement('div');
+                        card.className = `skill-card ${status}`;
+                        card.innerHTML = `
+                            <div class="skill-name">${skill.name}</div>
+                            <span class="skill-difficulty difficulty-${skill.difficulty}">
+                                ${skill.difficulty === 'beginner' ? '入门' : skill.difficulty === 'intermediate' ? '进阶' : '高阶'}
+                            </span>
+                        `;
+                        card.onclick = () => showSkillModal(skill, skillId, card);
+                        container.appendChild(card);
+                    });
+                }
+            }
+            
+            updateProgress();
+        }
+
+        function showSkillModal(skill, skillId, card) {
+            document.getElementById('modalTitle').textContent = skill.name;
+            document.getElementById('modalBody').innerHTML = `
+                <p style="margin-bottom: 15px;"><strong>难度等级：</strong>${skill.difficulty === 'beginner' ? '入门' : skill.difficulty === 'intermediate' ? '进阶' : '高阶'}</p>
+                <p style="margin-bottom: 15px;"><strong>技能描述：</strong>${skill.desc}</p>
+                <p style="margin-bottom: 15px;"><strong>学习建议：</strong>建议先完成理论推导，再通过代码实现加深理解。</p>
+                <p><strong>当前状态：</strong>${skillStatus[skillId] === 'completed' ? '已完成 ✓' : skillStatus[skillId] === 'learning' ? '学习中 ⏳' : '未开始 ○'}</p>
+                <button onclick="toggleSkillStatus('${skillId}')" style="margin-top: 15px; padding: 10px 20px; background: linear-gradient(135deg, #667eea, #764ba2); border: none; border-radius: 8px; color: white; cursor: pointer; width: 100%;">
+                    ${skillStatus[skillId] === 'completed' ? '标记为未完成' : skillStatus[skillId] === 'learning' ? '标记为已完成' : '开始学习'}
+                </button>
+            `;
+            document.getElementById('skillModal').classList.add('show');
+        }
+
+        function closeModal() {
+            document.getElementById('skillModal').classList.remove('show');
+        }
+
+        function toggleSkillStatus(skillId) {
+            if (skillStatus[skillId] === 'completed') {
+                skillStatus[skillId] = 'not-started';
+            } else if (skillStatus[skillId] === 'learning') {
+                skillStatus[skillId] = 'completed';
+            } else {
+                skillStatus[skillId] = 'learning';
+            }
+            
+            localStorage.setItem('aiMathRoadmapProgress', JSON.stringify(skillStatus));
+            closeModal();
+            location.reload();
+        }
+
+        function updateProgress() {
+            const total = 25;
+            const completed = Object.values(skillStatus).filter(s => s === 'completed').length;
+            const percentage = (completed / total) * 100;
+            document.getElementById('progressFill').style.width = percentage + '%';
+        }
+
+        function scrollToStage(stageId) {
+            const element = document.getElementById(stageId);
+            if (element) {
+                const headerHeight = document.querySelector('.header').offsetHeight;
+                const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+                window.scrollTo({
+                    top: elementPosition - headerHeight - 10,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        function checkAnswer(option, isCorrect, message) {
+            const parent = option.parentElement;
+            const feedback = parent.nextElementSibling;
+            
+            const options = parent.querySelectorAll('.quiz-option');
+            options.forEach(opt => {
+                opt.classList.remove('correct', 'incorrect');
+                opt.style.pointerEvents = 'none';
+            });
+            
+            if (isCorrect) {
+                option.classList.add('correct');
+                feedback.className = 'quiz-feedback show correct';
+            } else {
+                option.classList.add('incorrect');
+                feedback.className = 'quiz-feedback show incorrect';
+            }
+            
+            feedback.textContent = message;
+        }
+
+        function checkAdvancedAnswer(option, quizId, isCorrect, message) {
+            const parent = option.parentElement;
+            const feedback = parent.nextElementSibling;
+            
+            const options = parent.querySelectorAll('.quiz-option');
+            options.forEach(opt => {
+                opt.classList.remove('correct', 'incorrect');
+                opt.style.pointerEvents = 'none';
+            });
+            
+            if (isCorrect) {
+                option.classList.add('correct');
+                feedback.className = 'quiz-feedback show correct';
+            } else {
+                option.classList.add('incorrect');
+                feedback.className = 'quiz-feedback show incorrect';
+            }
+            
+            feedback.textContent = message;
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('skillModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        loadSkills();
+    </script>
+</body>
+</html>
